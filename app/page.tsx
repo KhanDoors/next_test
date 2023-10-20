@@ -10,9 +10,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useState } from "react";
 
 export default function Home() {
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+  const [date, setDate] = useState<Date | undefined>(new Date());
+
   return (
     <>
       <DropdownMenu>
@@ -33,12 +36,30 @@ export default function Home() {
           <DropdownMenuItem onClick={() => setTheme("system")}>
             System
           </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setTheme("orange")}>
+            Orange
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setTheme("green")}>
+            Green
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setTheme("red")}>
+            Red
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setTheme("blue")}>
+            Blue
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
 
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-          <Calendar />
+          <Button />
+          <Calendar
+            mode="single"
+            selected={date}
+            onSelect={setDate}
+            className="rounded-md border"
+          />
         </div>
       </main>
     </>
